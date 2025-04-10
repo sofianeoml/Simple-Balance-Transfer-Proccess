@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="/static/styles/main.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card profile-card">
+            <div class="header">
+                <h1>Your Profile</h1>
+            </div>
+            <div class="profile-info">
+                <p><strong>Username:</strong> {{ username }}</p>
+                <p><strong>Email:</strong> {{ email }}</p>
+                <p><strong>Date of Joining:</strong> {{ created_at | timestamp_to_date }}</p>
+                <p><strong>Balance:</strong> ${{ "%.2f" | format(balance) }}</p>
+            </div>
+            <div class="footer">
+                <p><button id="transferBtn" class="transfer-btn">Transfer Balance</button></p>
+                <p><button id="logoutBtn" class="logout-btn">Log out</button></p>
+            </div>
+        </div>
+
+        <div class="users-list">
+            <h2>Other Users</h2>
+            <ul id="usersList">
+                {% if other_users %}
+                    {% for user in other_users %}
+                    <li class="user-item">
+                        <span>{{ user[1] }}</span>
+                    </li>
+                    {% endfor %}
+                {% else %}
+                    <li class="no-users">No users found</li>
+                {% endif %}
+            </ul>
+            <button id="viewMoreBtn" class="view-more-btn">View More</button>
+        </div>
+    </div>
+
+    <div id="transferDialog" class="dialog hidden">
+        <div class="dialog-content">
+            <h3>Transfer Balance</h3>
+            <div class="form-group">
+                <label for="transferUsername">Username</label>
+                <input type="text" id="transferUsername" placeholder="Enter username" autocomplete="off">
+                <ul id="usernameSuggestions" class="suggestions hidden"></ul>
+            </div>
+            <div class="form-group">
+                <label for="transferAmount">Amount</label>
+                <input type="number" id="transferAmount" placeholder="Enter amount" min="0" step="0.01">
+            </div>
+            <div id="transferMessage" class="message hidden"></div>
+            <button id="submitTransferBtn" class="submit-btn">Transfer</button>
+            <button id="closeDialogBtn" class="close-btn">Close</button>
+        </div>
+    </div>
+
+    <script src="/static/scripts/profile.js"></script>
+</body>
+</html>

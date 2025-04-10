@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Transactions</title>
+    <link rel="stylesheet" href="/static/styles/main.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="header">
+                <h1>Check Transactions</h1>
+                <p>Review and fix invalid transactions</p>
+            </div>
+            <button id="processBtn" class="process-btn">Process Transactions</button>
+            <div id="results" class="results hidden">
+                <h2>Results</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Transaction ID</th>
+                            <th>Errors</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsBody"></tbody>
+                </table>
+            </div>
+            <div class="footer">
+                <p><a href="/profile">Back to Profile</a></p>
+            </div>
+        </div>
+    </div>
+    <script src="/static/scripts/check_transaction.js"></script>
+</body>
+</html>
